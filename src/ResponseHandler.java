@@ -2,7 +2,6 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class ResponseHandler implements Runnable {
 
@@ -25,9 +24,8 @@ public class ResponseHandler implements Runnable {
       String str = ".";
       while (!str.equals("")) {
         str = inFromClient.readLine();
-        //System.out.println(str);
+      //  System.out.println(str);
       }
-
 
       //Create output stream (to client)
       PrintWriter outToClient = new PrintWriter(remoteSocket.getOutputStream());
@@ -39,8 +37,16 @@ public class ResponseHandler implements Runnable {
       outToClient.println("Server: Hackerbot");
       outToClient.println("");
 
+      User user = new User();
+      user.setName("John Doe");
+      user.setAge(34);
+      user.setUsername("killerxp2000");
+      user.setPassword("hax1337");
 
-      outToClient.println("{\"hello\":\"world\"}");
+      Gson gson = new Gson();
+      String response = gson.toJson(user);
+
+      outToClient.println(response);
 
       //Flush'n'close
       outToClient.flush();
