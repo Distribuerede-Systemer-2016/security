@@ -40,22 +40,8 @@ public class ResponseHandler implements Runnable {
       outToClient.println("Server: Hackerbot");
       outToClient.println("");
 
-      User user1 = new User();
-      user1.setName("Luke Skywalker");
-      user1.setAge(18);
 
-      User user2 = new User();
-      user2.setName("Lea");
-      user2.setAge(19);
-
-      ArrayList<User> users = new ArrayList<>();
-      users.add(user1);
-      users.add(user2);
-
-      Gson gson = new Gson();
-      String jsonUsers = gson.toJson(users);
-
-      outToClient.println(jsonUsers);
+      outToClient.println("{\"hello\":\"world\"}");
 
       //Flush'n'close
       outToClient.flush();
