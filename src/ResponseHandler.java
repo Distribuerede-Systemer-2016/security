@@ -43,6 +43,8 @@ public class ResponseHandler implements Runnable {
       user.setUsername("killerxp2000");
       user.setPassword("hax1337");
 
+      user.setPassword(Digester.hashWithSalt(user.getPassword()));
+
       Gson gson = new Gson();
       String response = gson.toJson(user);
 
